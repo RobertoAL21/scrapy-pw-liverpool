@@ -11,7 +11,7 @@ class LiverpoolSpider(scrapy.Spider):
 
         for html_file in sorted(html_dir.glob("page_*.html")):
             yield scrapy.Request(
-                url=f"file://{html_file.resolve()}",
+                url=html_file.resolve().as_uri(),
                 callback=self.parse,
                 dont_filter=True,
             )
